@@ -1,0 +1,68 @@
+.body{
+    padding-top: 5%;
+    background-color: #F0F0F5;
+    width: 100%;
+    height: 500px;
+    margin-top: -4%;    
+    font-size: 20px
+}
+
+/* .formContainer{
+    width: 100%;
+    margin-top: 11px;
+    margin-left: 300px;
+    padding-right: 15px;
+    padding-left: 15px;
+    align-items: center;
+    align-content: center;
+   
+
+} */
+
+.container-form {
+    width: 150%;
+    margin-top: 11%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto; 
+    position: absolute;
+    width:50%;
+    left: 27%;;
+    top: 8%;
+    margin:0 auto;
+   
+  }
+
+
+  .btnEnviar {
+    color: #fff;
+    background-color: #2aa7c9;
+    border-color: #2aa7c9;
+    border-radius: 15px;
+    width: 150px;
+    padding: 1px;
+    font-weight: bold;
+    display: block;
+    margin: auto;
+  }
+  
+  .texto{
+      font-weight: 300;
+  }
+
+.row input{
+    margin-bottom: 30px;
+    height:40px;
+}
+
+.appearance-select{
+    -webkit-appearance: none;  /* Remove estilo padrão do Chrome */
+    -moz-appearance: none; /* Remove estilo padrão do FireFox */
+    appearance: none; /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;  /* Imagem de fundo (Seta) */
+    background-position: 218px center;  /*Posição da imagem do background*/
+    width: 250px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height:45px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border:2px solid #ddd;
+    text-align:center;
+ }

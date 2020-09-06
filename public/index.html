@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <link  rel="icon" href="logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="descrição"
+      content="Plataforma Apenas faça TI -Tecnologia da Informação "
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>JDIT</title>
+
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+  </body>
+</html>
+<script>
+  $(document).on("click", "#minim_chat_window", function (e) {
+        var $this = $(this);
+        if (!$this.hasClass("panel-collapsed")) {
+            $this.parents(".panel").find(".panel-body").slideUp();
+            $this.addClass("panel-collapsed");
+            $this.removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        } else {
+            $this.parents(".panel").find(".panel-body").slideDown();
+            $this.removeClass("panel-collapsed");
+            $this.removeClass("glyphicon-plus").addClass("glyphicon-minus");
+        }
+    });
+</script>
