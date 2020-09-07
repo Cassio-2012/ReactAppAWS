@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const httpBase = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'http://ec2-18-205-79-20.compute-1.amazonaws.com:8080'
 })
 
 class ApiCalls {
