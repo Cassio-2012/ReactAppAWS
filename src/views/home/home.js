@@ -46,7 +46,7 @@ class Home extends React.Component {
 
   initial = () => {
     axios
-      .get("http://localhost:8080/post/load/initial")
+      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/post/load/initial")
       .then((response) => {
         this.loadPage();
       })
@@ -57,7 +57,7 @@ class Home extends React.Component {
 
   loadRecomendation = () => {
     axios
-      .get("http://localhost:8080/conhecimentos/recomendados")
+      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/recomendados")
       .then((response) => {
         const dados = response.data;
         this.setState({ recomendados: dados });
@@ -69,7 +69,7 @@ class Home extends React.Component {
 
   loadPage = () => {
     axios
-      .get("http://localhost:8080/post/load/feed")
+      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/post/load/feed")
       .then((response) => {
         const dados = response.data;
         if (!dados[0].id) {
@@ -120,7 +120,7 @@ class Home extends React.Component {
         return console.log("já curtido");
       } else {
         axios
-          .post(`http://localhost:8080/reacoes/reagir`, {
+          .post(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/reacoes/reagir`, {
             id_user: this.state.idUser,
             id_post: id_post,
             tipo: tipo,
@@ -144,7 +144,7 @@ class Home extends React.Component {
 
   sair = () => {
     axios
-      .get("http://localhost:8080/user/logoff")
+      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/user/logoff")
       .then((response) => {
         this.props.history.push("/login");
       })
@@ -184,7 +184,7 @@ class Home extends React.Component {
 
   postar = () => {
     axios
-      .post("http://localhost:8080/post/new", {
+      .post("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/post/new", {
         conteudo: this.state.conteudo,
         id_user: this.state.idUser,
         imagem: this.state.image,

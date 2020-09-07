@@ -10,7 +10,7 @@ function download() {
 
     //Configuração padrão para o axios
     const config = {
-        url: 'http://localhost:8080/export',
+        url: 'http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/export',
         method: 'GET',
         responseType: 'blob'
     };
