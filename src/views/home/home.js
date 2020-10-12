@@ -7,9 +7,11 @@ import Fechar from "../../imagens/fechar.svg";
 import Recomendation from "../../components/recomendation-field";
 import Waypoint from "../../components/way";
 import Imagem from "../../imagens/camera.svg";
-import Loading from "../../imagens/Spinner.gif";
 import Pencil from "../../imagens/pencil.svg";
 import File from "../../imagens/file.svg";
+import LocalStorage from '../../services/local-storage'
+// import Moon from '../../imagens/meia-lua.png'
+// import WhiteMoon from '../../imagens/meia-lua white.png'
 import axios from "axios";
 
 class Home extends React.Component {
@@ -33,8 +35,14 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    const usuario = localStorage.getItem("usuario_atual");
-    const usuarioLogado = JSON.parse(usuario);
+    
+    const usuarioLogado = LocalStorage.getItem("usuario_atual")
+    var isDark = LocalStorage.getItem("_darkmode")
+    const $html = document.querySelector('html')
+
+    if(isDark) {
+      $html.classList.add('dark-mode')      
+    } 
 
     this.setState({ nome: usuarioLogado.nome });
     this.setState({ idUser: usuarioLogado.id });
@@ -46,7 +54,7 @@ class Home extends React.Component {
 
   initial = () => {
     axios
-      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/post/load/initial")
+      .get("http://18.205.79.20:8080/post/load/initial")
       .then((response) => {
         this.loadPage();
       })
@@ -57,7 +65,7 @@ class Home extends React.Component {
 
   loadRecomendation = () => {
     axios
-      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/recomendados")
+      .get("http://18.205.79.20:8080/conhecimentos/recomendados")
       .then((response) => {
         const dados = response.data;
         this.setState({ recomendados: dados });
@@ -69,7 +77,7 @@ class Home extends React.Component {
 
   loadPage = () => {
     axios
-      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/post/load/feed")
+      .get("http://18.205.79.20:8080/post/load/feed")
       .then((response) => {
         const dados = response.data;
         if (!dados[0].id) {
@@ -120,7 +128,7 @@ class Home extends React.Component {
         return console.log("já curtido");
       } else {
         axios
-          .post(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/reacoes/reagir`, {
+          .post(`http://18.205.79.20:8080/reacoes/reagir`, {
             id_user: this.state.idUser,
             id_post: id_post,
             tipo: tipo,
@@ -144,7 +152,7 @@ class Home extends React.Component {
 
   sair = () => {
     axios
-      .get("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/user/logoff")
+      .get("http://18.205.79.20:8080/user/logoff")
       .then((response) => {
         this.props.history.push("/login");
       })
@@ -184,7 +192,7 @@ class Home extends React.Component {
 
   postar = () => {
     axios
-      .post("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/post/new", {
+      .post("http://18.205.79.20:8080/post/new", {
         conteudo: this.state.conteudo,
         id_user: this.state.idUser,
         imagem: this.state.image,
@@ -205,6 +213,20 @@ class Home extends React.Component {
     this.loadRecomendation();
   };
 
+  darkChange = () => {
+    const $html = document.querySelector('html')
+    var is_dark = LocalStorage.getItem("_darkmode")
+    $html.classList.toggle('dark-mode')
+
+    if(is_dark) {
+      LocalStorage.removeItem("_darkmode")
+    } else {
+      LocalStorage.putItem("_darkmode",true)
+    }
+ 
+
+  }
+
   render() {
     return (
       <>
@@ -220,7 +242,7 @@ class Home extends React.Component {
         <div className="content">
           <div className="container-fluid">
             <div className="row">
-              <UserInfo photo={this.state.photo} label={this.state.nome} />
+              <UserInfo id="user" action={this.darkChange} photo={this.state.photo} label={this.state.nome} />              
               <div className="col-md-8">
                 <div className="row search">
                   <span className="icon-pencil">
@@ -254,6 +276,7 @@ class Home extends React.Component {
                         for="photo"
                       >
                         <img className="icon-image" src={Imagem} />
+                        
                       </label>
                       <input
                         className="input-image"
@@ -296,11 +319,14 @@ class Home extends React.Component {
               </div>
 
               <Recomendation body={this.state.recomendados} />
+              
 
-              <img id="load" className="gif-load" src={Loading} alt="load" />
+              {/* <img id="load" className="gif-load" alt="load" /> */}
 
               <div className="way">{this.state.way}</div>
+              
             </div>
+            <div id="load" className="gif-load"  ></div>
           </div>
         </div>
 

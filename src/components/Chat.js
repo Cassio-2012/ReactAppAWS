@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import uuid from "uuid/dist/v4";
 const myId = uuid();
-const socket = io("https://serverchatjust.azurewebsites.net");
+const socket = io("http://18.205.79.20:8877");
 socket.on("connect", () =>
   console.log("[IO] Connect => A new connection has been established")
 );

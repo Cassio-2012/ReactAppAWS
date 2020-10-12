@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiTrash2, FiList, FiPlusSquare } from 'react-icons/fi';
 import Navbar from '../../../components/navbar'
 import api from '../../../services/api';
-import '../css-evento.css';
+import '../../../bootstrap/bootswatch/pulse/bootstrap.css'
 
 
 
@@ -13,6 +13,14 @@ export default function Eventos() {
     const usuario = localStorage.getItem('usuario_atual');
     const usuarioLogado = JSON.parse(usuario);
     const [idUsuarioLogado, setIdUsuarioLogado] = useState(usuarioLogado.id);
+    const isDark = localStorage.getItem("_darkmode")
+    
+    const $html = document.querySelector('html')
+
+    if(isDark) {
+        $html.classList.add('dark-mode')      
+        console.log('ta dark')
+    } 
 
 
     useEffect(() => {

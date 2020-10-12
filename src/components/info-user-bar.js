@@ -1,6 +1,8 @@
 import React from 'react'
 
+
 function UserInfo(prop) {
+
 
     return(
                 <div className="col-md-2">
@@ -16,7 +18,12 @@ function UserInfo(prop) {
                                 <li className="data-user">Informações</li>
                             </ul>
                         </div>
-                    </div>   
+                    </div>
+                    <div className="div-dark-mode">
+                         <button className="btn-dark-mode" onClick={prop.action}>Dark Mode</button>  
+                    </div>
+                     
+                    
                 </div>
 
     )

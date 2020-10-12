@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import '../css-evento.css';
-
+import '../../../bootstrap/bootswatch/pulse/bootstrap.css'
 import api from '../../../services/api';
 import Navbar from '../../../components/navbar';
 import UserInfo from '../../../components/info-user-bar';
 
 
+
 export default function CadastroEvento() {
     const usuario = localStorage.getItem('usuario_atual');
     const usuarioLogado = JSON.parse(usuario);
+    const isDark = localStorage.getItem("_darkmode")
+    
+    const $html = document.querySelector('html')
+
+    if(isDark) {
+        $html.classList.add('dark-mode')             
+    } 
 
     const [nome, setNome] = useState('');
     const [cep, setCep] = useState('');

@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import api from '../../../services/api';
 import Navbar from '../../../components/navbar';
 import UserInfo from '../../../components/info-user-bar';
-import '../../Suporte/FormSuporte/css-suporte.css'
+import '../../../bootstrap/bootswatch/pulse/bootstrap.css'
 
 
 export default class Suporte extends React.Component {

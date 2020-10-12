@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiCornerDownLeft } from 'react-icons/fi';
 import Navbar from '../../../components/navbar'
 import api from '../../../services/api';
-import '../css-evento.css';
+import '../../../bootstrap/bootswatch/pulse/bootstrap.css'
 import Convidado from './Convidados/convidado';
 import CadastroConvidado from './Convidados/cadastroConvidado';
 
@@ -14,6 +14,13 @@ export default function DetalhesEvento() {
 
     const [eventoDeta, setEventoDet] = useState([]);
     const [idUsuarioLogado, setIdUsuarioLogado] = useState(usuarioLogado);
+    const isDark = localStorage.getItem("_darkmode")
+
+    const $html = document.querySelector('html')
+
+    if(isDark) {
+        $html.classList.add('dark-mode')             
+    } 
     
     useEffect(() => {
         api.get(`/eventos/${id}`).then(response => {

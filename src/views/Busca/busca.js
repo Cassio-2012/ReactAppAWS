@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar'
 import UserInfo from '../../components/info-user-bar'
 import CardBusca from './busca-card'
 import {Dropdown} from 'primereact/dropdown';
-import Loading from '../../imagens/Spinner.gif'
+import LocalStorage from '../../services/local-storage'
 
 import axios from 'axios'
 
@@ -38,6 +38,12 @@ class Busca extends React.Component {
         this.setState({idUser: usuarioLogado.id})
         this.setState({photo: usuarioLogado.photo})      
         document.getElementById('load').style.display = 'inline';  
+        var isDark = LocalStorage.getItem("_darkmode")
+        const $html = document.querySelector('html')
+    
+        if(isDark) {
+          $html.classList.add('dark-mode')      
+        } 
        
          
         this.buscar();
@@ -51,11 +57,10 @@ class Busca extends React.Component {
         const tipo = this.state.tipo
 
         this.setState({request: ''})  
-        document.getElementById('load').style.display = 'inline';   
-        document.getElementById('content-busca').style.display = 'none';
+
 
         if(dado){
-            axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/find?conhecimento=${dado}&level=${nivel}`)
+            axios.get(`http://18.205.79.20:8080/conhecimentos/find?conhecimento=${dado}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -72,7 +77,7 @@ class Busca extends React.Component {
 
         }
         else if(tipo) {
-            axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/find?tipo=${tipo}&level=${nivel}`)
+            axios.get(`http://18.205.79.20:8080/conhecimentos/find?tipo=${tipo}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -88,7 +93,7 @@ class Busca extends React.Component {
             })
         }
         else {
-            axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/find?conhecimento=${parametro}&level=${nivel}`)
+            axios.get(`http://18.205.79.20:8080/conhecimentos/find?conhecimento=${parametro}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -109,7 +114,7 @@ class Busca extends React.Component {
 
   
     sair = () => {
-        axios.get('http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/logoff')
+        axios.get('http://18.205.79.20:8080/logoff')
         .then( response => {
           this.props.history.push('/login')
         }).catch( erro => {
@@ -154,6 +159,20 @@ class Busca extends React.Component {
         }
 
     }
+
+    darkChange = () => {
+        const $html = document.querySelector('html')
+        var is_dark = LocalStorage.getItem("_darkmode")
+        $html.classList.toggle('dark-mode')
+    
+        if(is_dark) {
+          LocalStorage.removeItem("_darkmode")
+        } else {
+          LocalStorage.putItem("_darkmode",true)
+        }
+     
+    
+      }
 
 
     render() {
@@ -201,23 +220,25 @@ class Busca extends React.Component {
                     <label className="label-select-nivel"><b>Categoria</b></label>
                     <Dropdown className="filtro-busca-type" value={this.state.tipo} options={typeSelectItems}
                     onChange={(e) => {this.setState({tipo: e.value})}} placeholder="Selecione uma categoria"/>
-                </div>
+                </div>                
 
             <div className="content">
                 <div className="container-fluid">
                     <div className="row">
                                                                         
-                        <UserInfo photo={this.state.photo} label={this.state.nome} />                        
+                        <UserInfo action={this.darkChange} photo={this.state.photo} label={this.state.nome} />    
+
+                        <div id="load" className="gif-load-perf"></div>                    
                            
                           </div>
-
+                          
                                                     
                           <div id="content-busca" className="div-superior-busca">                    
 
                              {this.verifyBusca()}
 
                           </div>
-                          <img id="load" className="gif-load" src={Loading} alt="load"/>
+                          {/* <img id="load" className="gif-load" src={Loading} alt="load"/> */}
             
                         
                         {/* <Recomendation body={this.state.recomendados}/> */}
