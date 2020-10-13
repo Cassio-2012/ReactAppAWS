@@ -83,7 +83,7 @@ class Perfil extends React.Component {
         this.setState({ id_user: usuarioLogado.id })
         this.setState({ photo: usuarioLogado.photo })
 
-        axios.get(`http://18.205.79.20:8080/user/about?id=${usuarioLogado.id}`)
+        axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/user/about?id=${usuarioLogado.id}`)
             .then(response => {
                 const data = response.data
 
@@ -103,7 +103,7 @@ class Perfil extends React.Component {
     loadType = () => {
 
 
-        axios.get('http://18.205.79.20:8080/conhecimentos/types')
+        axios.get('http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/types')
             .then(response => {
                 const data = response.data
 
@@ -125,7 +125,7 @@ class Perfil extends React.Component {
         const usuario = localStorage.getItem('usuario_atual')
         const usuarioLogado = JSON.parse(usuario)
 
-        axios.get(`http://18.205.79.20:8080/conhecimentos/buscar/conhecimentos?id=${usuarioLogado.id}`)
+        axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/buscar/conhecimentos?id=${usuarioLogado.id}`)
             .then(response => {
                 const data = response.data
 
@@ -143,7 +143,7 @@ class Perfil extends React.Component {
         const usuario = localStorage.getItem('usuario_atual')
         const usuarioLogado = JSON.parse(usuario)
 
-        axios.get(`http://18.205.79.20:8080/conhecimentos/buscar/interesses?id=${usuarioLogado.id}`)
+        axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/buscar/interesses?id=${usuarioLogado.id}`)
             .then(response => {
                 const data = response.data
 
@@ -197,7 +197,7 @@ class Perfil extends React.Component {
     }
 
     sair = () => {
-        axios.get('http://18.205.79.20:8080/logoff')
+        axios.get('http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/logoff')
             .then(response => {
                 this.props.history.push('/login')
             }).catch(erro => {
@@ -209,7 +209,7 @@ class Perfil extends React.Component {
     atualizar = () => {
 
 
-        axios.patch("http://18.205.79.20:8080/user/about", {
+        axios.patch("http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/user/about", {
             id: this.state.id_user,
             sobre: this.state.desc_atualize
         })
@@ -261,7 +261,7 @@ class Perfil extends React.Component {
 
     addConhecimento = () => {
 
-        axios.post('http://18.205.79.20:8080/conhecimentos/adicionar/conhecimento',
+        axios.post('http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/adicionar/conhecimento',
         {
             descricao_user: this.state.desc_new_know,
             nivel: 1,
@@ -281,7 +281,7 @@ class Perfil extends React.Component {
 
         addInteresse = () => {
 
-            axios.post('http://18.205.79.20:8080/conhecimentos/adicionar/interesse',
+            axios.post('http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/adicionar/interesse',
             {
                 descricao_interesse: this.state.desc_new_interest,
                 usuario: {
@@ -303,7 +303,7 @@ class Perfil extends React.Component {
     
      select = (value) =>{
 
-           axios.get(`http://18.205.79.20:8080/conhecimentos/knowledges/${value}`)
+           axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/knowledges/${value}`)
                     .then(response => {
                         const data = response.data
         
@@ -362,7 +362,7 @@ class Perfil extends React.Component {
 
      deletarConhecimento = () => {
 
-    axios.delete(`http://18.205.79.20:8080/conhecimentos/remover/conhecimento/${this.state.to_delete}`)
+    axios.delete(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/remover/conhecimento/${this.state.to_delete}`)
     .then(response => {
         console.log("Deletado com sucesso")
         window.location.reload();
@@ -375,7 +375,7 @@ class Perfil extends React.Component {
 }
 
     deletarInteresse = () => {
-        axios.delete(`http://18.205.79.20:8080/conhecimentos/remover/interesse/${this.state.to_delete}`)
+        axios.delete(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/remover/interesse/${this.state.to_delete}`)
         .then(response => {
             console.log("Deletado com sucesso")
             window.location.reload();

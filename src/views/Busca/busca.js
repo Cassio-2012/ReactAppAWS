@@ -60,7 +60,7 @@ class Busca extends React.Component {
 
 
         if(dado){
-            axios.get(`http://18.205.79.20:8080/conhecimentos/find?conhecimento=${dado}&level=${nivel}`)
+            axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/find?conhecimento=${dado}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -77,7 +77,7 @@ class Busca extends React.Component {
 
         }
         else if(tipo) {
-            axios.get(`http://18.205.79.20:8080/conhecimentos/find?tipo=${tipo}&level=${nivel}`)
+            axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/find?tipo=${tipo}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -93,7 +93,7 @@ class Busca extends React.Component {
             })
         }
         else {
-            axios.get(`http://18.205.79.20:8080/conhecimentos/find?conhecimento=${parametro}&level=${nivel}`)
+            axios.get(`http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/conhecimentos/find?conhecimento=${parametro}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -114,7 +114,7 @@ class Busca extends React.Component {
 
   
     sair = () => {
-        axios.get('http://18.205.79.20:8080/logoff')
+        axios.get('http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/logoff')
         .then( response => {
           this.props.history.push('/login')
         }).catch( erro => {
