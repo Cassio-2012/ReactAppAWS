@@ -15,7 +15,7 @@ class Login extends React.Component {
         email: '',
         senha: '',
         messages: '',
-        validated: false
+        validated: true
 
     }
 
@@ -67,7 +67,7 @@ class Login extends React.Component {
     verifyResponse = (response) => {
         if(response) {
             const data = response
-            axios.post('http://ec2-18-205-79-20.compute-1.amazonaws.com:8080/user/recaptcha',
+            axios.post('https://18.205.79.20:4040/user/recaptcha',
             {
                 captcha: data  
 
