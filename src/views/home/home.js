@@ -154,6 +154,8 @@ class Home extends React.Component {
     axios
       .get("https://18.205.79.20:4040/user/logoff")
       .then((response) => {
+
+        LocalStorage.removeAll();
         this.props.history.push("/login");
       })
       .catch((erro) => {

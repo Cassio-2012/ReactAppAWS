@@ -3,6 +3,7 @@ import Card from '../components/card-login.js'
 import Logo from '../imagens/logo.png'
 import Recaptcha from 'react-recaptcha'
 import Formgroup from '../components/form-group'
+import LocalStorage from '../services/local-storage'
 import UsuarioCalls from '../calls/userCalls'
 import {Growl} from 'primereact/growl';
 import {InputText} from 'primereact/inputtext';
@@ -15,7 +16,7 @@ class Login extends React.Component {
         email: '',
         senha: '',
         messages: '',
-        validated: true
+        validated: false
 
     }
 
@@ -23,6 +24,12 @@ class Login extends React.Component {
         super();
         this.call = new UsuarioCalls();
         this.showError = this.showError.bind(this);
+    }
+
+    componentDidMount() {
+
+        LocalStorage.removeAll();
+
     }
 
     entrar = () => {

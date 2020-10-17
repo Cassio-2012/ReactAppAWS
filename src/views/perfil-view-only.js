@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/navbar'
 import Chat from '../components/Chat'
 import Busca from './Busca/busca'
+import LocalStorage from '../services/local-storage'
 import Conhecimentos from '../components/conhecimentos-field-view'
 import Interesses from '../components/interesses-field-view'
 import axios from 'axios'
@@ -138,6 +139,7 @@ class PerfilViewOnly extends React.Component {
     sair = () => {
         axios.get('https://18.205.79.20:4040/logoff')
             .then(response => {
+                LocalStorage.removeAll();
                 this.props.history.push('/login')
             }).catch(erro => {
                 console.log(erro.response.data)

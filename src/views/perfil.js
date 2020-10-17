@@ -199,6 +199,7 @@ class Perfil extends React.Component {
     sair = () => {
         axios.get('https://18.205.79.20:4040/logoff')
             .then(response => {
+                LocalStorage.removeAll();
                 this.props.history.push('/login')
             }).catch(erro => {
                 console.log(erro.response.data)

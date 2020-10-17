@@ -13,4 +13,9 @@ export default class LocalStorageService {
         localStorage.removeItem(chave);
     }
 
+    static removeAll() {
+        localStorage.removeItem('usuario_atual');
+        localStorage.removeItem('_darkmode');
+    }    
+
 }
