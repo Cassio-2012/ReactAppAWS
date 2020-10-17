@@ -29,6 +29,8 @@ class Login extends React.Component {
     componentDidMount() {
 
         LocalStorage.removeAll();
+	const $html = document.querySelector('html')
+	$html.classList.remove('dark-mode')
 
     }
 
