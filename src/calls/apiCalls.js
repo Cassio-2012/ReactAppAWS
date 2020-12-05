@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const httpBase = axios.create({
-    baseURL: 'https://3.217.4.219:4040'
+    baseURL: 'https://35.168.142.138:4040'
 })
 
 class ApiCalls {

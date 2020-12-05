@@ -83,7 +83,7 @@ class Perfil extends React.Component {
         this.setState({ id_user: usuarioLogado.id })
         this.setState({ photo: usuarioLogado.photo })
 
-        axios.get(`https://3.217.4.219:4040/user/about?id=${usuarioLogado.id}`)
+        axios.get(`https://35.168.142.138:4040/user/about?id=${usuarioLogado.id}`)
             .then(response => {
                 const data = response.data
 
@@ -103,7 +103,7 @@ class Perfil extends React.Component {
     loadType = () => {
 
 
-        axios.get('https://3.217.4.219:4040/conhecimentos/types')
+        axios.get('https://35.168.142.138:4040/conhecimentos/types')
             .then(response => {
                 const data = response.data
 
@@ -125,7 +125,7 @@ class Perfil extends React.Component {
         const usuario = localStorage.getItem('usuario_atual')
         const usuarioLogado = JSON.parse(usuario)
 
-        axios.get(`https://3.217.4.219:4040/conhecimentos/buscar/conhecimentos?id=${usuarioLogado.id}`)
+        axios.get(`https://35.168.142.138:4040/conhecimentos/buscar/conhecimentos?id=${usuarioLogado.id}`)
             .then(response => {
                 const data = response.data
 
@@ -143,7 +143,7 @@ class Perfil extends React.Component {
         const usuario = localStorage.getItem('usuario_atual')
         const usuarioLogado = JSON.parse(usuario)
 
-        axios.get(`https://3.217.4.219:4040/conhecimentos/buscar/interesses?id=${usuarioLogado.id}`)
+        axios.get(`https://35.168.142.138:4040/conhecimentos/buscar/interesses?id=${usuarioLogado.id}`)
             .then(response => {
                 const data = response.data
 
@@ -197,7 +197,7 @@ class Perfil extends React.Component {
     }
 
     sair = () => {
-        axios.get('https://3.217.4.219:4040/logoff')
+        axios.get('https://35.168.142.138:4040/logoff')
             .then(response => {
                 LocalStorage.removeAll();
                 this.props.history.push('/login')
@@ -210,7 +210,7 @@ class Perfil extends React.Component {
     atualizar = () => {
 
 
-        axios.patch("https://3.217.4.219:4040/user/about", {
+        axios.patch("https://35.168.142.138:4040/user/about", {
             id: this.state.id_user,
             sobre: this.state.desc_atualize
         })
@@ -262,7 +262,7 @@ class Perfil extends React.Component {
 
     addConhecimento = () => {
 
-        axios.post('https://3.217.4.219:4040/conhecimentos/adicionar/conhecimento',
+        axios.post('https://35.168.142.138:4040/conhecimentos/adicionar/conhecimento',
         {
             descricao_user: this.state.desc_new_know,
             nivel: 1,
@@ -282,7 +282,7 @@ class Perfil extends React.Component {
 
         addInteresse = () => {
 
-            axios.post('https://3.217.4.219:4040/conhecimentos/adicionar/interesse',
+            axios.post('https://35.168.142.138:4040/conhecimentos/adicionar/interesse',
             {
                 descricao_interesse: this.state.desc_new_interest,
                 usuario: {
@@ -304,7 +304,7 @@ class Perfil extends React.Component {
     
      select = (value) =>{
 
-           axios.get(`https://3.217.4.219:4040/conhecimentos/knowledges/${value}`)
+           axios.get(`https://35.168.142.138:4040/conhecimentos/knowledges/${value}`)
                     .then(response => {
                         const data = response.data
         
@@ -363,7 +363,7 @@ class Perfil extends React.Component {
 
      deletarConhecimento = () => {
 
-    axios.delete(`https://3.217.4.219:4040/conhecimentos/remover/conhecimento/${this.state.to_delete}`)
+    axios.delete(`https://35.168.142.138:4040/conhecimentos/remover/conhecimento/${this.state.to_delete}`)
     .then(response => {
         console.log("Deletado com sucesso")
         window.location.reload();
@@ -376,7 +376,7 @@ class Perfil extends React.Component {
 }
 
     deletarInteresse = () => {
-        axios.delete(`https://3.217.4.219:4040/conhecimentos/remover/interesse/${this.state.to_delete}`)
+        axios.delete(`https://35.168.142.138:4040/conhecimentos/remover/interesse/${this.state.to_delete}`)
         .then(response => {
             console.log("Deletado com sucesso")
             window.location.reload();

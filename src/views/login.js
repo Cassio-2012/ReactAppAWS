@@ -76,7 +76,7 @@ class Login extends React.Component {
     verifyResponse = (response) => {
         if(response) {
             const data = response
-            axios.post('https://3.217.4.219:4040/user/recaptcha',
+            axios.post('https://35.168.142.138:4040/user/recaptcha',
             {
                 captcha: data  
 
@@ -174,7 +174,7 @@ class Login extends React.Component {
                             <div className="recaptcha-set">
 
                                     <Recaptcha                                    
-                                    sitekey="6LdaTsgZAAAAAFJBf2VR_cTT0bK4g4gSGS7VZ-m-"
+                                    sitekey="6LcnpPkZAAAAAO3Zchunjsc-hEjJxGyroetOp_PV"
                                     render="explicit"
                                     onloadCallback={this.recaptchaLoaded}
                                     verifyCallback={this.verifyResponse}

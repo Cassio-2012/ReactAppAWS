@@ -63,7 +63,7 @@ class PerfilViewOnly extends React.Component {
 
         const usuarioID = this.props.match.params.id        
 
-        axios.get(`https://3.217.4.219:4040/user/view/${usuarioID}`)
+        axios.get(`https://35.168.142.138:4040/user/view/${usuarioID}`)
             .then(response => {
                 const data = response.data       
                 const id = response.data.id                           
@@ -90,7 +90,7 @@ class PerfilViewOnly extends React.Component {
     loadConhecimentos = (value) => {
 
 
-        axios.get(`https://3.217.4.219:4040/conhecimentos/buscar/conhecimentos?id=${value}`)
+        axios.get(`https://35.168.142.138:4040/conhecimentos/buscar/conhecimentos?id=${value}`)
             .then(response => {
                 const data = response.data
 
@@ -105,7 +105,7 @@ class PerfilViewOnly extends React.Component {
     loadInteresses = (value) => {
         
 
-        axios.get(`https://3.217.4.219:4040/conhecimentos/buscar/interesses?id=${value}`)
+        axios.get(`https://35.168.142.138:4040/conhecimentos/buscar/interesses?id=${value}`)
             .then(response => {
                 const data = response.data
 
@@ -137,7 +137,7 @@ class PerfilViewOnly extends React.Component {
     }
 
     sair = () => {
-        axios.get('https://3.217.4.219:4040/logoff')
+        axios.get('https://35.168.142.138:4040/logoff')
             .then(response => {
                 LocalStorage.removeAll();
                 this.props.history.push('/login')
