@@ -60,7 +60,7 @@ class Busca extends React.Component {
 
 
         if(dado){
-            axios.get(`https://3.217.4.219:4040/conhecimentos/find?conhecimento=${dado}&level=${nivel}`)
+            axios.get(`https://35.168.142.138:4040/conhecimentos/find?conhecimento=${dado}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -77,7 +77,7 @@ class Busca extends React.Component {
 
         }
         else if(tipo) {
-            axios.get(`https://3.217.4.219:4040/conhecimentos/find?tipo=${tipo}&level=${nivel}`)
+            axios.get(`https://35.168.142.138:4040/conhecimentos/find?tipo=${tipo}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -93,7 +93,7 @@ class Busca extends React.Component {
             })
         }
         else {
-            axios.get(`https://3.217.4.219:4040/conhecimentos/find?conhecimento=${parametro}&level=${nivel}`)
+            axios.get(`https://35.168.142.138:4040/conhecimentos/find?conhecimento=${parametro}&level=${nivel}`)
             .then(response => {
                 const data = response.data
                
@@ -114,7 +114,7 @@ class Busca extends React.Component {
 
   
     sair = () => {
-        axios.get('https://3.217.4.219:4040/logoff')
+        axios.get('https://35.168.142.138:4040/logoff')
         .then( response => {
         LocalStorage.removeAll();
           this.props.history.push('/login')
